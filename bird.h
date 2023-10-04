@@ -58,8 +58,8 @@ public:
 
    // getters
    bool isDead()           const { return dead;   }
-   Position getPosition()     const { return pt;     }
-   Velocity getVelocity()  const { return v;      }
+   Position& getPosition() { return pt;     }
+   Velocity& getVelocity() { return v;      }
    double getRadius()      const { return radius; }
    int getPoints() const { return points; }
    bool isOutOfBounds() const

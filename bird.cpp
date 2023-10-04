@@ -227,5 +227,5 @@ void Sinker::draw()
 }
 
 void Bird::advance() {
-   advanceObject->advance(&this, points);
+   advanceObject->advance(*this, points);
 }
