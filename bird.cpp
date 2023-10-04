@@ -7,8 +7,8 @@
  *    Stuff that moves across the screen to be shot
  ************************************************************************/
 
-#include <cassert>
 #include "bird.h"
+#include "advance.h"
 
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
@@ -41,7 +41,7 @@
 /******************************************************************
  * STANDARD constructor
  ******************************************************************/
-Standard::Standard(double radius, double speed, int points, Birds type) : Bird()
+Standard::Standard(double radius, double speed, int points) : Bird()
 {
    // set the position: standard birds start from the middle
    pt.setY(randomFloat(dimensions.getY() * 0.25, dimensions.getY() * 0.75));
@@ -57,16 +57,13 @@ Standard::Standard(double radius, double speed, int points, Birds type) : Bird()
    // set the size
    this->radius = radius;
 
-   // Bird type
-   this->type = type;
-
-   advance = new Inertia();
+   advanceObject = new Inertia();
 }
 
 /******************************************************************
  * FLOATER constructor
  ******************************************************************/
-Floater::Floater(double radius, double speed, int points, Birds type) : Bird()
+Floater::Floater(double radius, double speed, int points) : Bird()
 {
    // floaters start on the lower part of the screen because they go up with time
    pt.setY(randomFloat(dimensions.getY() * 0.01, dimensions.getY() * 0.5));
@@ -82,16 +79,13 @@ Floater::Floater(double radius, double speed, int points, Birds type) : Bird()
    // set the size
    this->radius = radius;
 
-   // Bird type
-   this->type = type;
-
-   advance = new Buoyancy();
+   advanceObject = new Buoyancy();
 }
 
 /******************************************************************
  * SINKER constructor
  ******************************************************************/
-Sinker::Sinker(double radius, double speed, int points, Birds type) : Bird()
+Sinker::Sinker(double radius, double speed, int points) : Bird()
 {
    // sinkers start on the upper part of the screen because they go down with time
    pt.setY(randomFloat(dimensions.getY() * 0.50, dimensions.getY() * 0.95));
@@ -107,16 +101,13 @@ Sinker::Sinker(double radius, double speed, int points, Birds type) : Bird()
    // set the size
    this->radius = radius;
 
-   // Bird type
-   this->type = type;
-
-   advance = new Gravity();
+   advanceObject = new Gravity();
 }
 
 /******************************************************************
  * CRAZY constructor
  ******************************************************************/
-Crazy::Crazy(double radius, double speed, int points, Birds type) : Bird()
+Crazy::Crazy(double radius, double speed, int points) : Bird()
 {
    // crazy birds start in the middle and can go any which way
    pt.setY(randomFloat(dimensions.getY() * 0.25, dimensions.getY() * 0.75));
@@ -132,10 +123,7 @@ Crazy::Crazy(double radius, double speed, int points, Birds type) : Bird()
    // set the size
    this->radius = radius;
 
-   // Bird type
-   this->type = type;
-
-   advance = new Chaos();
+   advanceObject = new Chaos();
 }
 
 /***************************************************************/
@@ -236,4 +224,8 @@ void Sinker::draw()
       drawDisk(pt, radius - 0.0, 0.0, 0.0, 0.8);
       drawDisk(pt, radius - 4.0, 0.0, 0.0, 0.0);
    }
+}
+
+void Bird::advance() {
+   advanceObject->advance(&this, points);
 }

@@ -1,6 +1,6 @@
 #include "advance.h"
 
-void Inertia::advance(Bird* bird, int points)
+void Inertia::advance(Bird* & bird, int points)
 {
     bird->getVelocity() *= 0.995;
     
@@ -15,7 +15,7 @@ void Inertia::advance(Bird* bird, int points)
     }
 }
 
-void Buoyancy::advance(Bird* bird, int points)
+void Buoyancy::advance(Bird* & bird, int points)
 {
     bird->getVelocity() *= 0.990;
     bird->getPosition() += bird->getVelocity();
@@ -29,7 +29,7 @@ void Buoyancy::advance(Bird* bird, int points)
     }
 }
 
-void Gravity::advance(Bird* bird, int points)
+void Gravity::advance(Bird* & bird, int points)
 {
     bird->getVelocity().addDy(-0.07);
 
@@ -41,7 +41,7 @@ void Gravity::advance(Bird* bird, int points)
     }
 }
 
-void Chaos::advance(Bird* bird, int points)
+void Chaos::advance(Bird* & bird, int points)
 {
     if (randomInt(0, 15) == 0)
         {
