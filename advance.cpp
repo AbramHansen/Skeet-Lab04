@@ -1,58 +1,61 @@
 #include "advance.h"
-
-void Inertia::advance(Bird* & bird, int points)
+#include <iostream>
+void Inertia::advance(Bird & bird, int points)
 {
-    bird->getVelocity() *= 0.995;
-    
+    bird.getVelocity() *= 0.995;
     // inertia
-    bird->getPosition() += bird->getVelocity();
+    bird.getPosition().add(bird.getVelocity());
 
     // out of bounds checker
-    if (bird->isOutOfBounds())
+    if (bird.isOutOfBounds())
     {
-        bird->kill();
+        bird.kill();
         points *= -1; // points go negative when it is missed!
+        bird.setPoints(points);
     }
 }
 
-void Buoyancy::advance(Bird* & bird, int points)
+void Buoyancy::advance(Bird & bird, int points)
 {
-    bird->getVelocity() *= 0.990;
-    bird->getPosition() += bird->getVelocity();
-    bird->getVelocity().addDy(0.05);
+    bird.getVelocity() *= 0.990;
+    bird.getPosition().add(bird.getVelocity());
+    bird.getVelocity().addDy(0.05);
 
     // out of bounds checker
-    if (bird->isOutOfBounds())
+    if (bird.isOutOfBounds())
     {
-        bird->kill();
+        bird.kill();
         points *= -1; // points go negative when it is missed!
+        bird.setPoints(points);
     }
 }
 
-void Gravity::advance(Bird* & bird, int points)
+void Gravity::advance(Bird & bird, int points)
 {
-    bird->getVelocity().addDy(-0.07);
-
+    bird.getVelocity().addDy(-0.07);
+    bird.getPosition().add(bird.getVelocity());
     // out of bounds checker
-    if (bird->isOutOfBounds())
+    if (bird.isOutOfBounds())
     {
-        bird->kill();
+        bird.kill();
         points *= -1; // points go negative when it is missed!
+        bird.setPoints(points);
     }
 }
 
-void Chaos::advance(Bird* & bird, int points)
+void Chaos::advance(Bird & bird, int points)
 {
     if (randomInt(0, 15) == 0)
         {
-            bird->getVelocity().addDy(randomFloat(-1.5, 1.5));
-            bird->getVelocity().addDx(randomFloat(-1.5, 1.5));
+            bird.getVelocity().addDy(randomFloat(-1.5, 1.5));
+            bird.getVelocity().addDx(randomFloat(-1.5, 1.5));
         }
-
+    bird.getPosition().add(bird.getVelocity());
     // out of bounds checker
-    if (bird->isOutOfBounds())
+    if (bird.isOutOfBounds())
     {
-        bird->kill();
+        bird.kill();
         points *= -1; // points go negative when it is missed!
+        bird.setPoints(points);
     }
 }
