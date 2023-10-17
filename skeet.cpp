@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include "skeet.h"
+#include "handler.h"
 using namespace std;
 
 
@@ -352,43 +353,47 @@ void Skeet::drawStatus() const
 }
 
 /************************
+ * SKEET SETLEVEL
+ * handle all user input
+ ************************/
+void Skeet::setLevel(int level)
+{
+   handlers.clear();
+   switch (level)
+   {
+   case 0:
+      handlers.push_back(new HandlerGameOver->handleRequest());
+      break;
+   case 1:
+      handlers.push_back(HandlerMoveGun);
+      handlers.push_back(HandlerPellet);
+      break;
+   case 2:
+      handlers.push_back(HandlerMoveGun);
+      handlers.push_back(HandlerPellet);
+      handlers.push_back(HandlerGuideMissile);
+      handlers.push_back(HandlerMissile);
+      break;
+   case 3,4:
+      handlers.push_back(HandlerMoveGun);
+      handlers.push_back(HandlerPellet);
+      handlers.push_back(HandlerGuideMissile);
+      handlers.push_back(HandlerMissile);
+      handlers.push_back(HandlerBomb);
+      break;
+   }
+}
+
+/************************
  * SKEET INTERACT
  * handle all user input
  ************************/
 void Skeet::interact(const UserInput & ui)
 {
-   // reset the game
-   if (time.isGameOver() && ui.isSpace())
-   { 
-      time.reset();
-      score.reset();
-      hitRatio.reset();
-      return;
-   }
-
-   // gather input from the interface
-   gun.interact(ui.isUp() + ui.isRight(), ui.isDown() + ui.isLeft());
-   Bullet *p = nullptr;
-
-   // a pellet can be shot at any time
-   if (ui.isSpace())
-      p = new Pellet(gun.getAngle());
-   // missiles can be shot at level 2 and higher
-   else if (ui.isM() && time.level() > 1)
-      p = new Missile(gun.getAngle());
-   // bombs can be shot at level 3 and higher
-   else if (ui.isB() && time.level() > 2)
-      p = new Bomb(gun.getAngle());
-   
-   bullseye = ui.isShift();
-
-   // add something if something has been added
-   if (nullptr != p)
-      bullets.push_back(p);
-   
-   // send movement information to all the bullets. Only the missile cares.
-   for (auto bullet : bullets)
-      bullet->input(ui.isUp() + ui.isRight(), ui.isDown() + ui.isLeft(), ui.isB()); 
+   for (auto &handler : handlers) {
+      if (handler->handleRequest(ui, *this))
+         break;
+   } 
 }
 
 /******************************************************************
