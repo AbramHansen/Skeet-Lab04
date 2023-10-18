@@ -22,6 +22,12 @@
 #include <list>
 #include <vector>
 
+class HandlerGameOver;
+class HandlerPellet;            
+class HandlerBomb;            
+class HandlerMissile; 
+class HandlerGuideMissile;            
+class HandlerMoveGun; 
 /*************************************************************************
  * Skeet
  * The game class
