@@ -1,30 +1,36 @@
-#include "skeet.h"
+class Skeet;
 
 class Handlers{
     public:
-    virtual void handleRequest(const UserInput & ui, Skeet & skeet) = 0;
+    virtual bool handleRequest(const UserInput & ui, Skeet & skeet) = 0;
 };
 
-class HandlerGameOver{
+class HandlerGameOver : public Handlers {
+    public:
     bool handleRequest(const UserInput & ui, Skeet & skeet);
 };
 
-class HandlerPellet{
+class HandlerPellet : public Handlers {
+    public:
     bool handleRequest(const UserInput & ui, Skeet & skeet);
 };
 
-class HandlerMissile{
+class HandlerMissile : public Handlers {
+    public:
     bool handleRequest(const UserInput & ui, Skeet & skeet);
 };
 
-class HandlerBomb{
+class HandlerBomb : public Handlers {
+    public:
     bool handleRequest(const UserInput & ui, Skeet & skeet);
 };
 
-class HandlerMoveGun{
+class HandlerMoveGun : public Handlers {
+    public:
     bool handleRequest(const UserInput & ui, Skeet & skeet);
 };
 
-class HandlerGuideMissile{
+class HandlerGuideMissile : public Handlers {
+    public:
     bool handleRequest(const UserInput & ui, Skeet & skeet);
 };

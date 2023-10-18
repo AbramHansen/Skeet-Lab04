@@ -31,7 +31,7 @@ void Time::reset()
  ************************/
 bool Time::isPlaying() const
 {
-    // the first 5 seconds are not game plahing time.
+    // the first 5 seconds are not game playing time.
     return secondsInLevel() > SECONDS_STATUS;
 }
 

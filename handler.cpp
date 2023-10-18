@@ -1,13 +1,14 @@
 #include "handler.h"
+#include "skeet.h"
 
 bool HandlerGameOver::handleRequest(const UserInput & ui, Skeet & skeet)
 {
     // reset the game
     if (ui.isSpace())
     { 
-        skeet->time.reset();
-        skeet->score.reset();
-        skeet->hitRatio.reset();
+        skeet.resetTime();
+        skeet.resetScore();
+        skeet.resetHitRatio();
         return true;
     } 
 
@@ -18,9 +19,9 @@ bool HandlerPellet::handleRequest(const UserInput & ui, Skeet & skeet)
 {
     // a pellet can be shot at any time
     if (ui.isSpace()) {
-        Bullet *p = new Pellet(this->gun.getAngle());
-        skeet->bullets.push_back(p);
-        skeet->score.adjust(0 - p->getvalue());
+        Bullet *p = new Pellet(skeet.getGunAngle());
+        skeet.addBullets();
+        skeet.adjustScore();
         return true;
     }
 
@@ -31,9 +32,9 @@ bool HandlerMissile::handleRequest(const UserInput & ui, Skeet & skeet)
 {
     // missiles can be shot at level 2 and higher
     if (ui.isM()) {
-        Bullet *p = new Missile(this->gun.getAngle());
-        skeet->bullets.push_back(p);
-        skeet->score.adjust(0 - p->getvalue());
+        Bullet *p = new Missile(skeet.getGunAngle());
+        skeet.addBullets();
+        skeet.adjustScore();
         return true;
     }
 
@@ -44,9 +45,9 @@ bool HandlerBomb::handleRequest(const UserInput & ui, Skeet & skeet)
 {
     // bombs can be shot at level 3 and higher
     if (ui.isB()) {
-        Bullet *p = new Bomb(this->gun.getAngle());
-        this->bullets.push_back(p);
-        this->score.adjust(0 - p->getvalue());
+        Bullet *p = new Bomb(skeet.getGunAngle());
+        skeet.addBullets();
+        skeet.adjustScore();
         return true;
     }
 
@@ -56,12 +57,12 @@ bool HandlerBomb::handleRequest(const UserInput & ui, Skeet & skeet)
 bool HandlerMoveGun::handleRequest(const UserInput & ui, Skeet & skeet)
 {
     // gather input from the interface
-    skeet->moveGun(ui.isUp(), ui.isDown());
+    skeet.moveGun(ui);
     return false;
 }
 
 bool HandlerGuideMissile::handleRequest(const UserInput & ui, Skeet & skeet)
 {
-    skeet->moveMissile(ui.isUp(), ui.isDown());
+    skeet.moveMissile(ui);
     return false;
 }

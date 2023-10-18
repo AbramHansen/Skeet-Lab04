@@ -362,24 +362,24 @@ void Skeet::setLevel(int level)
    switch (level)
    {
    case 0:
-      handlers.push_back(new HandlerGameOver->handleRequest());
+      handlers.push_back(handlerGameOver);
       break;
    case 1:
-      handlers.push_back(HandlerMoveGun);
-      handlers.push_back(HandlerPellet);
+      handlers.push_back(handlerMoveGun);
+      handlers.push_back(handlerPellet);
       break;
    case 2:
-      handlers.push_back(HandlerMoveGun);
-      handlers.push_back(HandlerPellet);
-      handlers.push_back(HandlerGuideMissile);
-      handlers.push_back(HandlerMissile);
+      handlers.push_back(handlerMoveGun);
+      handlers.push_back(handlerPellet);
+      handlers.push_back(handlerGuideMissile);
+      handlers.push_back(handlerMissile);
       break;
-   case 3,4:
-      handlers.push_back(HandlerMoveGun);
-      handlers.push_back(HandlerPellet);
-      handlers.push_back(HandlerGuideMissile);
-      handlers.push_back(HandlerMissile);
-      handlers.push_back(HandlerBomb);
+   case 3: case 4:
+      handlers.push_back(handlerMoveGun);
+      handlers.push_back(handlerPellet);
+      handlers.push_back(handlerGuideMissile);
+      handlers.push_back(handlerMissile);
+      handlers.push_back(handlerBomb);
       break;
    }
 }
@@ -391,7 +391,7 @@ void Skeet::setLevel(int level)
 void Skeet::interact(const UserInput & ui)
 {
    for (auto &handler : handlers) {
-      if (handler->handleRequest(ui, *this))
+      if (handler.handleRequest(ui, *this))
          break;
    } 
 }
@@ -414,7 +414,7 @@ int random(int min, int max)
 
 /************************
  * SKEET SPAWN
- * lanuch new birds
+ * launch new birds
  ************************/
 void Skeet::spawn()
 {

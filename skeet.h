@@ -22,14 +22,13 @@
 #include <list>
 #include <vector>
 
-class Handlers;
 /*************************************************************************
  * Skeet
  * The game class
  *************************************************************************/
 class Skeet 
 {
-friend Handlers;
+friend class Handlers;
 
 public:
     Skeet(Position & dimensions) : dimensions(dimensions),
@@ -50,6 +49,24 @@ public:
 
     // is the game currently playing right now?
     bool isPlaying() const { return time.isPlaying();  }
+
+    void resetTime() { time.reset(); }
+    void resetScore() { score.reset(); }
+    void resetHitRatio() { hitRatio.reset(); }
+    double getGunAngle() { return gun.getAngle(); }
+    void addBullets() { 
+        Bullet *p = nullptr;
+        if (nullptr != p)
+            bullets.push_back(p); 
+    }
+    void adjustScore() { 
+        Bullet *p = nullptr;
+        score.adjust(0 - p->getValue()); 
+    }
+
+    void moveGun(const UserInput& ui) { ui.isUp(), ui.isDown(); }
+    void moveMissile(const UserInput& ui) { ui.isUp(), ui.isDown(); }
+
 private:
     // generate new birds
     void spawn();                  
@@ -63,13 +80,17 @@ private:
     std::list<Bullet*> bullets;    // the bullets
     std::list<Effect*> effects;    // the fragments of a dead bird.
     std::list<Points>  points;     // point values;
-    HitRatio hitRatio;             // the hit ratio for the birds
     Position dimensions;           // size of the screen
     bool bullseye;
     std::vector<Handlers> handlers;
-
-protected:
     Gun gun;                       // the gun
     Time time;                     // how many frames have transpired since the beginning
     Score score;                   // the player's score
+    HitRatio hitRatio;             // the hit ratio for the birds
+    HandlerGameOver handlerGameOver;
+    HandlerPellet handlerPellet;            
+    HandlerBomb handlerBomb;            
+    HandlerMissile handlerMissile; 
+    HandlerGuideMissile handlerGuideMissile;            
+    HandlerMoveGun handlerMoveGun;                                   
 };

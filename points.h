@@ -23,6 +23,7 @@ public:
    void show() const;
    void update();
    bool isDead() const {return age <= 0.0; }
+   int getValue() const { return value; }
 private:
    Position pt;
    Velocity v;
