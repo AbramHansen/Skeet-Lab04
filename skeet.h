@@ -88,15 +88,15 @@ private:
     std::list<Points>  points;     // point values;
     Position dimensions;           // size of the screen
     bool bullseye;
-    std::vector<Handlers> handlers;
+    std::vector<Handlers*> handlers;
     Gun gun;                       // the gun
     Time time;                     // how many frames have transpired since the beginning
     Score score;                   // the player's score
     HitRatio hitRatio;             // the hit ratio for the birds
-    HandlerGameOver handlerGameOver;
-    HandlerPellet handlerPellet;            
-    HandlerBomb handlerBomb;            
-    HandlerMissile handlerMissile; 
-    HandlerGuideMissile handlerGuideMissile;            
-    HandlerMoveGun handlerMoveGun;                                   
+    HandlerGameOver* handlerGameOver;
+    HandlerPellet* handlerPellet;            
+    HandlerBomb* handlerBomb;            
+    HandlerMissile* handlerMissile; 
+    HandlerGuideMissile* handlerGuideMissile;            
+    HandlerMoveGun* handlerMoveGun;                                   
 };

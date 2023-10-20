@@ -391,7 +391,7 @@ void Skeet::setLevel(int level)
 void Skeet::interact(const UserInput & ui)
 {
    for (auto &handler : handlers) {
-      if (handler.handleRequest(ui, *this))
+      if (handler->handleRequest(ui, *this))
          break;
    } 
 }
