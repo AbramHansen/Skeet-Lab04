@@ -9,12 +9,14 @@
 
 #pragma once
 #include "position.h"
+#include "Visitor.h"
+#include "Element.h"
 
 /**********************
  * BIRD
  * Everything that can be shot
  **********************/
-class Bird
+class Bird : public Element
 {
 protected:
    static Position dimensions; // size of the screen
@@ -48,6 +50,12 @@ public:
    // special functions
    virtual void draw() = 0;
    virtual void advance() = 0;
+
+   // Visitor functionality
+   virtual void accept(Visitor* visitor)
+   {
+      visitor->visitBird(*this);
+   }
 };
 
 /*********************************************

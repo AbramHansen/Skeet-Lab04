@@ -8,7 +8,7 @@
  ************************************************************************/
 
 #pragma once
-
+#include "Element.h"
 #include "position.h"
 #include "uiInteract.h"
 #include "bird.h"
@@ -62,4 +62,5 @@ private:
     HitRatio hitRatio;             // the hit ratio for the birds
     Position dimensions;           // size of the screen
     bool bullseye;
+    std::list<Element*> elements;  // for game elements
 };

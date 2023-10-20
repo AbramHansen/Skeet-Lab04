@@ -22,6 +22,7 @@
     <ClCompile Include="bird.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="effect.cpp" />
+    <ClCompile Include="Element.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gun.cpp" />
     <ClCompile Include="points.cpp" />
@@ -30,11 +31,13 @@
     <ClCompile Include="skeet.cpp" />
     <ClCompile Include="time.cpp" />
     <ClCompile Include="uiInteract.cpp" />
+    <ClCompile Include="Visitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bird.h" />
     <ClInclude Include="effect.h" />
+    <ClInclude Include="Element.h" />
     <ClInclude Include="gun.h" />
     <ClInclude Include="points.h" />
     <ClInclude Include="position.h" />
@@ -42,6 +45,7 @@
     <ClInclude Include="skeet.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="uiInteract.h" />
+    <ClInclude Include="Visitor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
