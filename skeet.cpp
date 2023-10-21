@@ -32,6 +32,18 @@ using namespace std;
 #define GLUT_TEXT GLUT_BITMAP_HELVETICA_12
 #endif // _WIN32
 
+
+
+Skeet::Skeet(Position& dimensions) : dimensions(dimensions),
+gun(Position(800.0, 0.0)), time(), score(), hitRatio(), bullseye(false)
+{
+   handlerGameOver = new HandlerGameOver();
+   handlerPellet = new HandlerPellet();
+   handlerBomb = new HandlerBomb();
+   handlerMissile = new HandlerMissile();
+   handlerGuideMissile = new HandlerGuideMissile();
+   handlerMoveGun = new HandlerMoveGun();
+}
 /************************
  * SKEET ANIMATE
  * move the gameplay by one unit of time
@@ -390,6 +402,7 @@ void Skeet::setLevel(int level)
  ************************/
 void Skeet::interact(const UserInput & ui)
 {
+   setLevel(time.level());
    for (auto &handler : handlers) {
       if (handler->handleRequest(ui, *this))
          break;

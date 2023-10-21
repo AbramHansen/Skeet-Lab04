@@ -35,10 +35,15 @@ class HandlerMoveGun;
 class Skeet 
 {
 friend class Handlers;
+friend class HandlerGameOver;
+friend class HandlerPellet;
+friend class HandlerBomb;
+friend class HandlerMissile;
+friend class HandlerGuideMissile;
+friend class HandlerMoveGun;
 
 public:
-    Skeet(Position & dimensions) : dimensions(dimensions),
-        gun(Position(800.0, 0.0)), time(), score(), hitRatio(), bullseye(false) {}
+   Skeet(Position& dimensions);
 
     // handle all user input
     void interact(const UserInput& ui);
@@ -60,18 +65,21 @@ public:
     void resetScore() { score.reset(); }
     void resetHitRatio() { hitRatio.reset(); }
     double getGunAngle() { return gun.getAngle(); }
-    void addBullets() { 
-        Bullet *p = nullptr;
-        if (nullptr != p)
-            bullets.push_back(p); 
+    void addBullets(Bullet* p) { 
+        bullets.push_back(p); 
     }
-    void adjustScore() { 
-        Bullet *p = nullptr;
-        score.adjust(0 - p->getValue()); 
+    void adjustScore(Bullet* p) { 
+        score.adjust(-p->getValue()); 
     }
 
-    void moveGun(const UserInput& ui) { ui.isUp(), ui.isDown(); }
-    void moveMissile(const UserInput& ui) { ui.isUp(), ui.isDown(); }
+    void moveGun(const UserInput& ui) { gun.interact(ui.isUp() + ui.isRight(), ui.isDown() + ui.isLeft()); }
+    void moveMissile(const UserInput& ui) 
+    { 
+       for (auto bullet : bullets)
+       {
+          bullet->input(ui.isUp() + ui.isRight(), ui.isDown() + ui.isLeft(), ui.isB());
+      }
+    }
 
 private:
     // generate new birds
