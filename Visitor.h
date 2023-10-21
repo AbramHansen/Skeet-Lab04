@@ -3,7 +3,7 @@
 class Bird;
 class Bullet;
 class Effect;
-
+class Skeet;
 class Visitor
 {
 public:

@@ -9,6 +9,7 @@
 
 #pragma once
 #include "position.h"
+#include "Visitor.h"
 
 /**********************
  * Effect: stuff that is not interactive
@@ -30,6 +31,10 @@ public:
     
     // it is dead when age goes to 0.0
     bool isDead() const { return age <= 0.0; }
+    virtual void accept(Visitor* visitor)
+    {
+       visitor->visitEffect(*this);
+    }
 };
 
 /**********************

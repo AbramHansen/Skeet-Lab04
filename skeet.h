@@ -18,7 +18,7 @@
 #include "time.h"
 #include "score.h"
 #include "points.h"
-
+#include "Visitor.h"
 #include <list>
 
 /*************************************************************************
@@ -43,6 +43,7 @@ public:
 
     // is the game currently playing right now?
     bool isPlaying() const { return time.isPlaying();  }
+    
 private:
     // generate new birds
     void spawn();                  
@@ -62,5 +63,4 @@ private:
     HitRatio hitRatio;             // the hit ratio for the birds
     Position dimensions;           // size of the screen
     bool bullseye;
-    std::list<Element*> elements;  // for game elements
 };

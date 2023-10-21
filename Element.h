@@ -6,5 +6,6 @@ class Element
 {
 public:
    virtual void accept(Visitor* visitor) = 0;
+   
 };
 

@@ -54,15 +54,18 @@ void Skeet::animate()
    spawn();
    
    // move the birds and the bullets
+   
+   AdvanceVisitor* advancer = new AdvanceVisitor();
    for (auto element : birds)
    {
-      element->advance();
+      element->accept(advancer);
       hitRatio.adjust(element->isDead() ? -1 : 0);
    }
    for (auto bullet : bullets)
-      bullet->move(effects);
+      bullet->accept(advancer);
    for (auto effect : effects)
-      effect->fly();
+      effect->accept(advancer);
+      
    for (auto & pts : points)
       pts.update();
       
@@ -76,8 +79,9 @@ void Skeet::animate()
          {
             for (int i = 0; i < 25; i++)
                effects.push_back(new Fragment(bullet->getPosition(), bullet->getVelocity()));
-            element->kill();
-            bullet->kill();
+            KillVisitor* killer = new KillVisitor();
+            element->accept(killer);
+            bullet->accept(killer);
             hitRatio.adjust(1);
             bullet->setValue(-(element->getPoints()));
             element->setPoints(0);

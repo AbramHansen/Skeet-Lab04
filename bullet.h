@@ -10,6 +10,7 @@
 #pragma once
 #include "position.h"
 #include "effect.h"
+#include "Visitor.h"
 #include <list>
 #include <cassert>
 
@@ -46,13 +47,18 @@ public:
    virtual void output() = 0;
    virtual void input(bool isUp, bool isDown, bool isB) {}
    virtual void move(std::list<Effect*> &effects);
-
-protected:
    bool isOutOfBounds() const
    {
       return (pt.getX() < -radius || pt.getX() >= dimensions.getX() + radius ||
          pt.getY() < -radius || pt.getY() >= dimensions.getY() + radius);
    }
+   // Visitor functionality
+   virtual void accept(Visitor* visitor)
+   {
+      visitor->visitBullet(*this);
+   }
+protected:
+   
    void drawLine(const Position& begin, const Position& end,
                  double red = 1.0, double green = 1.0, double blue = 1.0) const;
 
