@@ -1,5 +1,6 @@
 class Skeet;
 class UserInput;
+
 class Handlers{
     public:
     virtual bool handleRequest(const UserInput & ui, Skeet & skeet) = 0;
