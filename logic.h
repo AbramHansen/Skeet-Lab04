@@ -1,20 +1,23 @@
 #include "storage.h"
 
+using namespace std;
+
 // Controller
 class Logic {
 public:
     Logic();
-    advance();
-    spawn();
-    input();
-    begin();
-    end();
-    getFramesLeft();
-    getLevelNumber();
-    getGunAngle();
-    isPlaying();
-    isGameOver();
-    getPercentLeft();
+    void advance();
+    void spawn();
+    void input();
+    iterator begin();
+    iterator end();
+    int getFramesLeft();
+    int getLevelNumber();
+    double getGunAngle();
+    bool isPlaying();
+    bool isGameOver();
+    double getPercentLeft();
 private:
     Storage storage;
+    iterator iterator;
 };

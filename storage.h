@@ -1,18 +1,21 @@
+
+using namespace std;
+
 // Model
 class Storage {
 public:
     Storage();
-    getPoints();
-    getNumKilled();
-    getNumMissed();
-    begin();
-    end();
-    beginBird();
-    endBird();
-    beginBullet();
-    endBullet();
-    add(elements);
-    reset();
+    int getPoints();
+    int getNumKilled();
+    int getNumMissed();
+    iterator begin();
+    iterator end();
+    iterator beginBird();
+    iterator endBird();
+    iterator beginBullet();
+    iterator endBullet();
+    void add(elements);
+    void reset();
 private:
     Element elements;
     int numBirds;
@@ -20,4 +23,5 @@ private:
     int numKilled;
     StorageTime time;
     StorageGun gun;
+    iterator iterator;
 };

@@ -1,12 +1,13 @@
 #include "logic.h"
+#include "uiInteract.h"
 
 // View
 class Interface {
 public:
     Interface();
-    input(ui);
-    processing();
-    output();
+    void input(const UserInput & ui);
+    void processing();
+    void output();
 private:
     Logic logic;
 };
