@@ -3,6 +3,7 @@
 using namespace std;
 
 // Controller
+template <typename T>
 class Logic {
 public:
     Logic();

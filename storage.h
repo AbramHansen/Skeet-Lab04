@@ -2,6 +2,7 @@
 using namespace std;
 
 // Model
+template <typename T>
 class Storage {
 public:
     Storage();

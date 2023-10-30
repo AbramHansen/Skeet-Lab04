@@ -2,6 +2,7 @@
 #include "uiInteract.h"
 
 // View
+template <typename T>
 class Interface {
 public:
     Interface();
