@@ -18,7 +18,12 @@ public:
     bool isPlaying();
     bool isGameOver();
     double getPercentLeft();
+
+    double getDimensionsX();
+    double getDimensionsY();
+    bool isBullseye();
 private:
     Storage storage;
     iterator iterator;
 };
+

@@ -24,10 +24,14 @@
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gun.cpp" />
+    <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="InterfaceElement.cpp" />
+    <ClCompile Include="Logic.cpp" />
     <ClCompile Include="points.cpp" />
     <ClCompile Include="position.cpp" />
     <ClCompile Include="score.cpp" />
     <ClCompile Include="skeet.cpp" />
+    <ClCompile Include="storage.cpp" />
     <ClCompile Include="time.cpp" />
     <ClCompile Include="uiInteract.cpp" />
   </ItemGroup>
@@ -36,10 +40,14 @@
     <ClInclude Include="bird.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="gun.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="InterfaceElement.h" />
+    <ClInclude Include="Logic.h" />
     <ClInclude Include="points.h" />
     <ClInclude Include="position.h" />
     <ClInclude Include="score.h" />
     <ClInclude Include="skeet.h" />
+    <ClInclude Include="storage.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="uiInteract.h" />
   </ItemGroup>
