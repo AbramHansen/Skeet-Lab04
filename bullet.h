@@ -12,6 +12,8 @@
 #include "effect.h"
 #include <list>
 #include <cassert>
+#include "Colleague.h"
+#include "Mediator.h"
 
 /*********************************************
  * BULLET
@@ -26,9 +28,10 @@ protected:
    double radius;             // the size (radius) of the bullet
    bool dead;                 // is this bullet dead?
    int value;                 // how many points does this cost?
+   BulletColleague* pColleague;
     
 public:
-   Bullet(double angle = 0.0, double speed = 30.0, double radius = 5.0, int value = 1);
+   Bullet(Mediator mediator, double angle = 0.0, double speed = 30.0, double radius = 5.0, int value = 1);
    
    // setters
    void kill()                   { dead = true; }
@@ -60,6 +63,8 @@ protected:
                 double red = 1.0, double green = 1.0, double blue = 1.0) const;
    int    random(int    min, int    max);
    double random(double min, double max);
+
+   BulletColleague pColleague;
 };
 
 /*********************
@@ -69,7 +74,7 @@ protected:
 class Pellet : public Bullet
 {
 public:
-   Pellet(double angle, double speed = 15.0) : Bullet(angle, speed, 1.0, 1) {}
+   Pellet(Mediator mediator, double angle, double speed = 15.0) : Bullet(mediator, angle, speed, 1.0, 1) {}
    
    void output();
 };
@@ -83,7 +88,7 @@ class Bomb : public Bullet
 private:
    int timeToDie;
 public:
-   Bomb(double angle, double speed = 10.0) : Bullet(angle, speed, 4.0, 4), timeToDie(60) {}
+   Bomb(Mediator mediator, double angle, double speed = 10.0) : Bullet(mediator, angle, speed, 4.0, 4), timeToDie(60) {}
    
    void output();
    void move(std::list<Effect*> & effects);
@@ -125,7 +130,7 @@ public:
 class Missile : public Bullet
 {
 public:
-   Missile(double angle, double speed = 10.0) : Bullet(angle, speed, 1.0, 3) {}
+   Missile(Mediator mediator, double angle, double speed = 10.0) : Bullet(mediator, angle, speed, 1.0, 3) {}
    
    void output();
    void input(bool isUp, bool isDown, bool isB)

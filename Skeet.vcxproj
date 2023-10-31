@@ -21,9 +21,12 @@
   <ItemGroup>
     <ClCompile Include="bird.cpp" />
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="Colleague.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gun.cpp" />
+    <ClCompile Include="handler.cpp" />
+    <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="points.cpp" />
     <ClCompile Include="position.cpp" />
     <ClCompile Include="score.cpp" />
@@ -34,8 +37,11 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bird.h" />
+    <ClInclude Include="Colleague.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="gun.h" />
+    <ClInclude Include="handler.h" />
+    <ClInclude Include="Mediator.h" />
     <ClInclude Include="points.h" />
     <ClInclude Include="position.h" />
     <ClInclude Include="score.h" />

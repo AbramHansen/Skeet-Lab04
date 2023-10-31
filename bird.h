@@ -9,6 +9,8 @@
 
 #pragma once
 #include "position.h"
+#include "Colleague.h"
+#include "Mediator.h"
 
 /**********************
  * BIRD
@@ -17,12 +19,13 @@
 class Bird
 {
 protected:
-   static Position dimensions; // size of the screen
-   Position pt;                  // position of the flyer
+   static Position dimensions;// size of the screen
+   Position pt;               // position of the flyer
    Velocity v;                // velocity of the flyer
    double radius;             // the size (radius) of the flyer
    bool dead;                 // is this flyer dead?
    int points;                // how many points is this worth?
+   BirdColleague* pColleague; //colleague to manage score
    
 public:
    Bird() : dead(false), points(0), radius(1.0) { }
@@ -48,6 +51,11 @@ public:
    // special functions
    virtual void draw() = 0;
    virtual void advance() = 0;
+
+   void wasShot()
+   {
+      pColleague->wasShot();
+   }
 };
 
 /*********************************************

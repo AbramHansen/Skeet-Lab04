@@ -34,7 +34,7 @@
 /*********************************************
  * BULLET constructor
  *********************************************/
-Bullet::Bullet(double angle, double speed, double radius, int value) :
+Bullet::Bullet(Mediator mediator, double angle, double speed, double radius, int value) :
    dead(false), radius(radius), value(value)
 {
    // set the initial position
@@ -47,6 +47,8 @@ Bullet::Bullet(double angle, double speed, double radius, int value) :
    v.setDy(speed * sin(angle));
    assert(v.getDx() <= 0.0);
    assert(v.getDy() >= 0.0);
+
+   this->
 }
 
 /*********************************************

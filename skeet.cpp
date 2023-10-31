@@ -78,9 +78,7 @@ void Skeet::animate()
                effects.push_back(new Fragment(bullet->getPosition(), bullet->getVelocity()));
             element->kill();
             bullet->kill();
-            hitRatio.adjust(1);
-            bullet->setValue(-(element->getPoints()));
-            element->setPoints(0);
+            element->wasShot();
          }
    
    // remove the zombie birds

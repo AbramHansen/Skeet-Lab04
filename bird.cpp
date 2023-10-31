@@ -167,7 +167,8 @@ void Standard::advance()
    if (isOutOfBounds())
    {
       kill();
-      points *= -1; // points go negative when it is missed!
+      //points *= -1; // points go negative when it is missed!
+      pColleague->wentOutOfBounds();
    }
 }
 
@@ -190,7 +191,8 @@ void Floater::advance()
    if (isOutOfBounds())
    {
       kill();
-      points *= -1; // points go negative when it is missed!
+      //points *= -1; // points go negative when it is missed!
+      pColleague->wentOutOfBounds();
    }
 }
 
@@ -214,7 +216,8 @@ void Crazy::advance()
    if (isOutOfBounds())
    {
       kill();
-      points *= -1; // points go negative when it is missed!
+      //points *= -1; // points go negative when it is missed!
+      pColleague->wentOutOfBounds();
    }
 }
 
@@ -234,7 +237,8 @@ void Sinker::advance()
    if (isOutOfBounds())
    {
       kill();
-      points *= -1; // points go negative when it is missed!
+      //points *= -1; // points go negative when it is missed!
+      pColleague->wentOutOfBounds();
    }
 }
 

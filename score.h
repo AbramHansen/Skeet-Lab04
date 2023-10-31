@@ -9,6 +9,8 @@
 
 #pragma once
 #include <string>
+#include "Mediator.h"
+#include "Colleague.h"
 
 /**********************
  * STATUS
@@ -36,6 +38,8 @@ public:
     void reset() { points = 0; }
 private:
     int points;
+
+    ScoreColleague* pColleague;
 };
 
 /**********************
@@ -52,4 +56,6 @@ public:
 private:
     int numKilled;
     int numMissed;
+
+    HitRatioColleague* pColleague;
 };
