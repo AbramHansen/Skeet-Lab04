@@ -15,6 +15,7 @@ public:
     iterator endBird();
     iterator beginBullet();
     iterator endBullet();
+    void setDimentions(Position dimentions);
     void add(elements);
     void reset();
 private:
@@ -25,6 +26,7 @@ private:
     StorageTime time;
     StorageGun gun;
     iterator iterator;
+    Position dimentions;
 };
 
 class StorageTime

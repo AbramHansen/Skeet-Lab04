@@ -3,7 +3,7 @@
 using namespace std;
 
 // Controller
-template <typename T>
+//template <typename T>
 class Logic {
 public:
     Logic();
@@ -18,6 +18,7 @@ public:
     bool isPlaying();
     bool isGameOver();
     double getPercentLeft();
+    void setDimentions(Position dimentions);
 
     double getDimensionsX();
     double getDimensionsY();

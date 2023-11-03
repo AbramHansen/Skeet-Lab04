@@ -8,14 +8,11 @@
  ************************************************************************/
 
 #include "uiInteract.h"
-#include "skeet.h"
+#include "Interface.h"
 #include "position.h"
 
 #define WIDTH  800.0
 #define HEIGHT 800.0
-
-Position Bullet::dimensions(WIDTH, HEIGHT);
-Position Bird::dimensions(WIDTH, HEIGHT);
 
  /*************************************
   * All the interesting work happens here, when
@@ -28,19 +25,14 @@ void callBack(const UserInput* pUI, void* p)
 {
    // the first step is to cast the void pointer into a game object. This
    // is the first step of every single callback function in OpenGL. 
-   Skeet* pSkeet = (Skeet*)p;
+   Interface* pInterface = (Interface*)p;
 
    // handle user input
-   pSkeet->interact(*pUI);
+   pInterface->input(*pUI);
 
-   // move the stuff
-   pSkeet->animate();
+   pInterface->processing();
 
-   // output the stuff
-   if (pSkeet->isPlaying())
-      pSkeet->drawLevel();
-   else
-      pSkeet->drawStatus();
+   pInterface->output();
 }
 
 /*********************************
@@ -65,11 +57,10 @@ int main(int argc, char** argv)
       "Skeet",
       dimensions);
 
-   // initialize the game class
-   Skeet skeet(dimensions);
+   Interface interface(dimensions);
 
    // set everything into action
-   ui.run(callBack, &skeet);
+   ui.run(callBack, &interface);
 
    return 0;
 }
