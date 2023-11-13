@@ -63,3 +63,9 @@ private:
     Position dimensions;           // size of the screen
     bool bullseye;
 };
+
+template <typename T>
+inline void callBack(const T& subject)
+{
+   subject->advance();
+}
