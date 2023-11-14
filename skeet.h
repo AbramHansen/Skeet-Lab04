@@ -61,6 +61,7 @@ private:
     Score score;                   // the player's score
     HitRatio hitRatio;             // the hit ratio for the birds
     Position dimensions;           // size of the screen
+    Bird* advanceBird;
     bool bullseye;
 };
 

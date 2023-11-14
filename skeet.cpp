@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include "skeet.h"
+#include "bird.h"
 using namespace std;
 
 
@@ -56,7 +57,8 @@ void Skeet::animate()
    // move the birds and the bullets
    for (auto element : birds)
    {
-      callBack(element, *advance);
+      
+      callBack(element, *advanceBird);
       hitRatio.adjust(element->isDead() ? -1 : 0);
    }
    for (auto bullet : bullets)
