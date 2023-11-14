@@ -61,11 +61,15 @@ private:
     Score score;                   // the player's score
     HitRatio hitRatio;             // the hit ratio for the birds
     Position dimensions;           // size of the screen
-    Bird* advanceBird;
     bool bullseye;
 };
 
-void callBack(Bird* birds, Bird &advance)
+inline void advanceBird(Bird& bird) 
 {
-   birds->advance();
+   bird.advance();
+}
+
+inline void executor(void (*advanceBird)(Bird& bird), Bird& bird)
+{
+   advanceBird(bird);
 };
