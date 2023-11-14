@@ -64,8 +64,7 @@ private:
     bool bullseye;
 };
 
-template <typename T>
-inline void callBack(const T& subject)
+void callBack(Bird* birds, Bird &advance)
 {
-   subject->advance();
-}
+   birds->advance();
+};

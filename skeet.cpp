@@ -56,7 +56,7 @@ void Skeet::animate()
    // move the birds and the bullets
    for (auto element : birds)
    {
-      element->advance();
+      callBack(element, *advance);
       hitRatio.adjust(element->isDead() ? -1 : 0);
    }
    for (auto bullet : bullets)
@@ -300,24 +300,24 @@ void Skeet::drawLevel() const
       drawBullseye(gun.getAngle());
 
    // output the gun
-   // gun.display();
-   execute(drawGun, gun);
+   gun.display();
+   //execute(drawGun, gun);
          
    // output the birds, bullets, and fragments
    for (auto& pts : points)
       pts.show();
-   // for (auto effect : effects)
-   //    effect->render();
-   // for (auto bullet : bullets)
-   //    bullet->output();
-   // for (auto element : birds)
-   //    element->draw();
-   for (auto bird : birds)
+   for (auto effect : effects)
+      effect->render();
+   for (auto bullet : bullets)
+      bullet->output();
+   for (auto element : birds)
+      element->draw();
+   /*for (auto bird : birds)
       execute(drawBird, bird);
    for (auto bird : birds)
       execute(drawBullet, bullet);
    for (auto bird : birds)
-      execute(drawEffect, effect);
+      execute(drawEffect, effect);*/
    
    // status
    drawText(Position(10,                         dimensions.getY() - 30), score.getText()  );
