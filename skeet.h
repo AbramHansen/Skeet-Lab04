@@ -64,12 +64,12 @@ private:
     bool bullseye;
 };
 
-inline void advanceBird(Bird& bird) 
+inline void advanceBird(void * bird) 
 {
-   bird.advance();
+   ((Bird*)bird)->advance();
 }
 
-inline void executor(void (*advanceBird)(Bird& bird), Bird& bird)
+inline void executor(void (*callBack)(void* obj), void* obj)
 {
-   advanceBird(bird);
+   callBack(obj);
 };

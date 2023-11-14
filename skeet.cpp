@@ -56,7 +56,7 @@ void Skeet::animate()
    // move the birds and the bullets
    for (auto element : birds)
    {
-      executor(advanceBird, *element);
+      executor(advanceBird, (void *)element);
       hitRatio.adjust(element->isDead() ? -1 : 0);
    }
 
