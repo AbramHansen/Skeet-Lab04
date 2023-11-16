@@ -9,7 +9,7 @@
 
 #include <cassert>
 #include "bird.h"
-
+#include "AbstractBirdOrder.h"
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
 #include <openGL/gl.h>    // Main OpenGL library
@@ -39,7 +39,14 @@
 /***************************************************************/
 /***************************************************************/
 
-
+/*****************************************************************
+* Execute
+* Can receive and execute a variety of Bird Orders
+*/
+void Bird::execute(AbstractBirdOrder* order)
+{
+   order->execute();
+}
 /******************************************************************
  * RANDOM
  * These functions generate a random number.

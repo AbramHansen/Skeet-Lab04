@@ -9,7 +9,7 @@
 
 #pragma once
 #include "position.h"
-
+class AbstractBirdOrder;
 /**********************
  * BIRD
  * Everything that can be shot
@@ -48,6 +48,7 @@ public:
    // special functions
    virtual void draw() = 0;
    virtual void advance() = 0;
+   void execute(AbstractBirdOrder* order);
 };
 
 /*********************************************

@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include "skeet.h"
+#include "AbstractBirdOrder.h"
 using namespace std;
 
 
@@ -56,7 +57,8 @@ void Skeet::animate()
    // move the birds and the bullets
    for (auto element : birds)
    {
-      element->advance();
+      BirdAdvanceOrder* order = new BirdAdvanceOrder(element);
+      element->execute(order);
       hitRatio.adjust(element->isDead() ? -1 : 0);
    }
    for (auto bullet : bullets)
@@ -76,7 +78,8 @@ void Skeet::animate()
          {
             for (int i = 0; i < 25; i++)
                effects.push_back(new Fragment(bullet->getPosition(), bullet->getVelocity()));
-            element->kill();
+            BirdKillOrder* order = new BirdKillOrder(element);
+            element->execute(order);
             bullet->kill();
             hitRatio.adjust(1);
             bullet->setValue(-(element->getPoints()));
