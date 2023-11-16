@@ -56,14 +56,14 @@ void Skeet::animate()
    // move the birds and the bullets
    for (auto element : birds)
    {
-      executor(advanceBird, (void *)element);
+      executor(advanceBird, (void*)element, effects);
       hitRatio.adjust(element->isDead() ? -1 : 0);
    }
 
-   for (auto & bullet : bullets)
-      bullet->move(effects);
+   for (auto& bullet : bullets)
+      executor(advanceBullet, bullet, effects);
    for (auto effect : effects)
-      effect->fly();
+      executor(advanceEffect, effect, effects);
    for (auto & pts : points)
       pts.update();
       

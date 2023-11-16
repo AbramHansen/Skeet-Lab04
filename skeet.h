@@ -31,6 +31,9 @@ public:
     Skeet(Position & dimensions) : dimensions(dimensions),
         gun(Position(800.0, 0.0)), time(), score(), hitRatio(), bullseye(false) {}
 
+    // Getters
+    const std::list<Effect*> getEffects() const { return effects; }
+
     // handle all user input
     void interact(const UserInput& ui);
 
@@ -64,12 +67,22 @@ private:
     bool bullseye;
 };
 
-inline void advanceBird(void * bird) 
+inline void advanceBird(void* bird, std::list<Effect*>& effects)
 {
    ((Bird*)bird)->advance();
 }
 
-inline void executor(void (*callBack)(void* obj), void* obj)
+inline void advanceEffect(void* effect, std::list<Effect*>& effects)
 {
-   callBack(obj);
-};
+   ((Effect*)effect)->fly();
+}
+
+inline void advanceBullet(void* bullet, std::list<Effect*>& effects)
+{
+   ((Bullet*)bullet)->move(effects);
+}
+
+inline void executor(void (*callBack)(void* obj, std::list<Effect*>& effects), void* obj, std::list<Effect*>& effects)
+{
+   callBack(obj, effects);
+}
