@@ -313,8 +313,8 @@ void Skeet::drawLevel() const
       element->draw();
    
    // status
-   drawText(Position(10,                         dimensions.getY() - 30), score.getText()  );
-   drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() - 30), time.getText()   );
+   drawText(Position(10,                         dimensions.getY() - 30), score.getText()   );
+   drawText(Position(dimensions.getX() / 2 - 30, dimensions.getY() - 30), time.getText()    );
    drawText(Position(dimensions.getX() - 110,    dimensions.getY() - 30), hitRatio.getText());
 }
 
@@ -409,7 +409,7 @@ int random(int min, int max)
 
 /************************
  * SKEET SPAWN
- * lanuch new birds
+ * launch new birds
  ************************/
 void Skeet::spawn()
 {

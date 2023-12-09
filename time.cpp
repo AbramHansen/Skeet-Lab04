@@ -31,7 +31,7 @@ void Time::reset()
  ************************/
 bool Time::isPlaying() const
 {
-    // the first 5 seconds are not game plahing time.
+    // the first 5 seconds are not game planing time.
     return secondsInLevel() > SECONDS_STATUS;
 }
 
@@ -76,7 +76,7 @@ int Time::secondsLeft() const
 
 /************************
  * TIME IS START LEVEL
- * Os this the very start of the playing time of the leve
+ * Os this the very start of the playing time of the level
  ************************/
 bool Time::isStartLevel() const
 {

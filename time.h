@@ -35,7 +35,7 @@ public:
     // has the game ended?
     bool isGameOver() const { return levelNumber == 0; }
     
-    // is this the very start of the playing time of the leve
+    // is this the very start of the playing time of the level
     bool isStartLevel() const;
     
     // how much time is there left?

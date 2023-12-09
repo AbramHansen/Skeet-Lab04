@@ -21,6 +21,7 @@
 
 #include <list>
 
+class SkeetDrawAdapter;
 /*************************************************************************
  * Skeet
  * The game class
@@ -43,6 +44,9 @@ public:
 
     // is the game currently playing right now?
     bool isPlaying() const { return time.isPlaying();  }
+
+    void setDrawAdapter(SkeetDrawAdapter* adapter) { drawAdapter = adapter; }
+
 private:
     // generate new birds
     void spawn();                  
@@ -62,4 +66,6 @@ private:
     HitRatio hitRatio;             // the hit ratio for the birds
     Position dimensions;           // size of the screen
     bool bullseye;
+
+    SkeetDrawAdapter* drawAdapter;
 };
