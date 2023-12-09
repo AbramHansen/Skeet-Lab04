@@ -9,27 +9,24 @@
 
 #pragma once
 #include "position.h"
-
+#include "Flyer.h"
 /**********************
  * Effect: stuff that is not interactive
  **********************/
-class Effect
+class Effect : public Flyer
 {
 protected:
-    Position pt;      // location of the effect
     double age;    // 1.0 = new, 0.0 = dead
 public:
     // create a fragment based on the velocity and position of the bullet
-    Effect(const Position & pt) : pt(pt), age(0.5) {}
+   Effect(const Position& pt) : age(0.5) { this->pt = pt; }
     
     // draw it
-    virtual void render() const = 0;
+    virtual void draw() const = 0;
     
     // move it forward with regards to inertia. Let it age
-    virtual void fly() = 0;
+    virtual void move(std::list<Effect*>& effects) = 0;
     
-    // it is dead when age goes to 0.0
-    bool isDead() const { return age <= 0.0; }
 };
 
 /**********************
@@ -46,10 +43,10 @@ public:
     Fragment(const Position & pt, const Velocity & v);
     
     // draw it
-    void render() const;
+    void draw() const;
     
     // move it forward with regards to inertia. Let it age
-    void fly();
+    void move(std::list<Effect*>& effects);
 };
 
 /**********************
@@ -65,10 +62,10 @@ public:
     Streek(const Position & pt, Velocity v);
     
     // draw it
-    void render() const;
+    void draw() const;
     
     // move it forward with regards to inertia. Let it age
-    void fly();
+    void move(std::list<Effect*>& effects);
 };
 
 /**********************
@@ -84,8 +81,8 @@ public:
     Exhaust(const Position & pt, Velocity v);
     
     // draw it
-    void render() const;
+    void draw() const;
     
     // move it forward with regards to inertia. Let it age
-    void fly();
+    void move(std::list<Effect*>& effects);
 };

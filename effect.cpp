@@ -104,7 +104,7 @@ Exhaust::Exhaust(const Position & pt, Velocity v) : Effect(pt)
  * FRAGMENT RENDER
  * Draw the fragment on the screen
  *************************************************************************/
-void Fragment::render() const
+void Fragment::draw() const
 {
     // Do nothing if we are already dead
     if (isDead())
@@ -129,7 +129,7 @@ void Fragment::render() const
  * STREEK RENDER
  * Draw the shrapnel streek on the screen
  *************************************************************************/
-void Streek::render() const
+void Streek::draw() const
 {
     // Do nothing if we are already dead
     if (isDead())
@@ -151,7 +151,7 @@ void Streek::render() const
  * EXHAUST RENDER
  * Draw a missile exhaust on the screen
  *************************************************************************/
-void Exhaust::render() const
+void Exhaust::draw() const
 {
    // Do nothing if we are already dead
    if (isDead())
@@ -179,7 +179,7 @@ void Exhaust::render() const
  * FRAGMENT FLY
  * Move the fragment on the screen
  *************************************************************************/
-void Fragment :: fly()
+void Fragment :: move(std::list<Effect*>& effects)
 {
     // move it forward with inertia (no gravity)
     pt += v;
@@ -187,30 +187,33 @@ void Fragment :: fly()
     // increase the age so it fades away
     age -= 0.02;
     size *= 0.95;
+    dead = age <= 0.0;
 }
 
 /************************************************************************
  * STREEK FLY
  * The streek will just fade away
  *************************************************************************/
-void Streek :: fly()
+void Streek :: move(std::list<Effect*>& effects)
 {
     // move it forward with inertia (no gravity)
 //    pt += v;
     
    // increase the age so it fades away
    age -= 0.10;
+   dead = age <= 0.0;
 }
 
 /************************************************************************
  * EXHAUST FLY
  * The exhaust will just fade away
  *************************************************************************/
-void Exhaust :: fly()
+void Exhaust :: move(std::list<Effect*>& effects)
 {
    // move it forward with inertia (no gravity)
 //   pt += v;
     
    // increase the age so it fades away
    age -= 0.025;
+   dead = age <= 0.0;
 }
