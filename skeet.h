@@ -18,6 +18,7 @@
 #include "time.h"
 #include "score.h"
 #include "points.h"
+#include "LevelUpdater.h"
 
 #include <list>
 
@@ -57,6 +58,12 @@ private:
     std::list<Bullet*> bullets;    // the bullets
     std::list<Effect*> effects;    // the fragments of a dead bird.
     std::list<Points>  points;     // point values;
+
+    Level1* level1 = new Level1;
+    Level2* level2 = new Level2;
+    Level3* level3 = new Level3;
+    Level4* level4 = new Level4;
+
     Time time;                     // how many frames have transpired since the beginning
     Score score;                   // the player's score
     HitRatio hitRatio;             // the hit ratio for the birds
